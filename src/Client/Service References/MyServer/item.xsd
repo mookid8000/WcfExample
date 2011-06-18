@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://trifork.com/wcf/unit_test_sample" elementFormDefault="qualified" targetNamespace="http://trifork.com/wcf/unit_test_sample" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3000/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Server.Service" />
+  <xs:element name="Process">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Server.Service" minOccurs="0" name="request" nillable="true" type="q1:Request" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProcessResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Server.Service" minOccurs="0" name="ProcessResult" nillable="true" type="q2:Response" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

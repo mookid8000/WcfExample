@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Server.Handlers.ServerVersion" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Server.Handlers.ServerVersion" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3000/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Server.Service" />
+  <xs:complexType name="QueryServerVersionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Server.Service" base="q1:Request">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QueryServerVersionRequest" nillable="true" type="tns:QueryServerVersionRequest" />
+  <xs:complexType name="QueryServerVersionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/Server.Service" base="q2:Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Version" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QueryServerVersionResponse" nillable="true" type="tns:QueryServerVersionResponse" />
+</xs:schema>
