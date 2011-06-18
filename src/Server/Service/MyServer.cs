@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Reflection;
+using System.ServiceModel;
 using log4net;
 using Microsoft.Practices.Unity;
 using Server.AppServices;
@@ -10,25 +11,25 @@ using Server.Handlers.ServerVersion;
 
 namespace Server.Service
 {
+    /// <summary>
+    /// Server instance is a singleton, allowing all initialization to happen in the constructor
+    /// </summary>
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class MyServer : IMyServer
     {
         #region service implementation internals
 
         static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         
-        static readonly UnityContainer Container = BuildContainer();
+        readonly UnityContainer container = new UnityContainer();
 
-        static UnityContainer BuildContainer()
+        public MyServer()
         {
-            Log.Debug("Building Unity container");
-
-            var container = new UnityContainer();
+            Log.Debug("Creating instance of server...");
 
             // possibly replace this tedious bit with some kind of auto-registration
             container.RegisterType<IRequestHandler<QueryServerVersionRequest>, QueryServerVersionHandler>()
                 .RegisterType<IDetermineServerVersion, DetermineServerVersionByLookingAtAssemblyInfo>();
-
-            return container;
         }
 
         #endregion
@@ -66,7 +67,7 @@ namespace Server.Service
             var handlerType = typeof(IRequestHandler<>).MakeGenericType(requestType);
 
             // obtain instance of implementation from IoC container
-            var handlerInstance = Container.Resolve(handlerType);
+            var handlerInstance = container.Resolve(handlerType);
 
             Log.DebugFormat("Dispatching request to handler of type {0}", handlerInstance.GetType());
 
