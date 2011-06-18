@@ -10,6 +10,7 @@ namespace Server.Service
     [KnownType("GetKnownTypes")]
     public abstract class Request
     {
+        // reflects on all subtypes, avoiding each Request derivation to be explicitly added
         public static IEnumerable<Type> GetKnownTypes()
         {
             return Assembly.GetExecutingAssembly().GetTypes()
