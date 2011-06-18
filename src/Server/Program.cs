@@ -1,26 +1,40 @@
 ﻿using System;
+using System.Reflection;
 using System.ServiceModel;
+using log4net;
 using Server.Service;
 
 namespace Server
 {
     class Program
     {
+        static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         static void Main()
         {
             ServiceHost host = null;
 
+            Log.Debug("DEBUG");
+            Log.Info("INFO");
+            Log.Warn("WARN");
+            Log.Error("ERROR");
+            Log.Info("----------------------------------------------------------------");
+
             try
             {
+                Log.Info("Creating host...");
                 host = new ServiceHost(typeof(MyServer));
+
+                Log.Info("Opening listener...");
                 host.Open();
 
-                Console.WriteLine("Listening...");
+                Log.Info("Listening...");
                 Console.ReadKey();
+                Log.Info("Shutting down...");
             }
             catch(Exception e)
             {
-                Console.WriteLine(e);
+                Log.Error(e);
             }
             finally
             {
@@ -29,10 +43,17 @@ namespace Server
                     try
                     {
                         host.Close();
+
+                        Log.Info("Host closed...");
                     }
-                    catch{}
+                    catch(Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
             }
+
+            Log.Info("The end.");
         }
     }
 }
