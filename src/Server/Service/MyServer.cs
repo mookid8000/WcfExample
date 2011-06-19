@@ -25,7 +25,7 @@ namespace Server.Service
 
         public MyServer()
         {
-            Log.Debug("Creating instance of server...");
+            Log.Debug("Service instance created!");
 
             // possibly replace this tedious bit with some kind of auto-registration
             container.RegisterType<IRequestHandler<QueryServerVersionRequest>, QueryServerVersionHandler>()

@@ -49,6 +49,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
@@ -61,6 +62,8 @@
     <Compile Include="AppServices\DetermineServerVersionByLookingAtAssemblyInfo.cs" />
     <Compile Include="AppServices\Api\IDetermineServerVersion.cs" />
     <Compile Include="AppServices\Exceptions\DomainException.cs" />
+    <Compile Include="Security\CustomAuthorizationPolicy.cs" />
+    <Compile Include="Security\CustomPrincipal.cs" />
     <Compile Include="Service\FaultReponse.cs" />
     <Compile Include="Service\IMyServer.cs" />
     <Compile Include="Service\IRequestHandler.cs" />
@@ -84,6 +87,7 @@
     <Content Include="AppServices\README.txt" />
     <Content Include="Handlers\README.txt" />
     <Content Include="README.txt" />
+    <Content Include="Security\README.txt" />
     <Content Include="Service\README.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

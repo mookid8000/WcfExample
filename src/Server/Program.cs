@@ -14,12 +14,6 @@ namespace Server
         {
             ServiceHost host = null;
 
-            Log.Debug("DEBUG");
-            Log.Info("INFO");
-            Log.Warn("WARN");
-            Log.Error("ERROR");
-            Log.Info("----------------------------------------------------------------");
-
             try
             {
                 Log.Info("Creating host...");
